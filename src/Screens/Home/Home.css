@@ -1,7 +1,12 @@
 
-.fondoProductos{
-   background-color: black;
-}
 .body{
-   background-color: rgb(17, 17, 17);
+   background-color: rgb(248, 25, 25) !important;
 }
+.fondoProductos{
+   background-color:  rgb(23, 180, 180);}
+
+   .Product{
+      max-width: auto;
+      max-height: auto;
+   }
+
