@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
+import CardProducto from '../../Componentes/Card';
 import './Home.css'
 
 function Home() {
@@ -27,30 +28,15 @@ function Home() {
   };
 
   return (
-    <html className='body'>
-    <body className='body'>
-    <Container className='fondoProductos'>
-      <h1>Productos Aleatorios</h1>
-      <Row>
-        {productos.map(producto => (
-          <Col key={producto.id} sm={6} md={4} lg={2}>
-            <div className="product-card">
-              <h3>{producto.name}</h3>
-              <p>Precio: {producto.price}</p>
-              <img
-                src={producto.image}
-                alt={`Imagen de ${producto.name}`}
-                className="product-image"           
-              />     
-            </div>
-          </Col>
-        ))}
+    <Container>
+      <h1>productos aleatorios</h1>
+      <Row xs={1} md={3} className="product" style={{display: "flex", flexDirection: "Row"}}>
+      {productos.map(producto => (
+        <Col  xs={2} key={producto.id}> <CardProducto product={producto}></CardProducto> </Col>
+      ))}
       </Row>
-      
     </Container>
-    </body>
-    </html>
-  );
+  )
 }
 
 export default Home;
