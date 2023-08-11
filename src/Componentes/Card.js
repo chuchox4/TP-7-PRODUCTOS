@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from "react-router-dom";
 
-function Card({img = "", titulo="", texto =""}) {
+function CardProducto({img = "", titulo="", texto =""}) {
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={img} />
@@ -17,4 +17,4 @@ function Card({img = "", titulo="", texto =""}) {
   );
 }
 
-export default Card;
+export default CardProducto;
