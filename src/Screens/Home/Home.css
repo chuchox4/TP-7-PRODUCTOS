@@ -48,3 +48,11 @@ img.card-img{
    background-color: #f8f8f8;
  }
  
+img.d-block.w-100{
+ width:   50px;
+ height: 300px;
+}
+
+div#root{
+  background-color: aqua;
+}

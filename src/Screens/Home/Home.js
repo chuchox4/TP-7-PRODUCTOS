@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel} from 'react-bootstrap';
 import './Home.css';
-
 function Home() {
   const [productos, setProductos] = useState([]);
 
@@ -29,8 +28,21 @@ function Home() {
 
   return (
     <Container>
+      <Carousel>
+    {productos.map((producto, index) => (
+      <Carousel.Item key={index}>
+        <img
+          className="d-block w-100"
+          src={producto.images[0]}           
+        />
+        <Carousel.Caption>
+        </Carousel.Caption>
+      </Carousel.Item>
+    ))}
+  </Carousel>
+   
       <h1>Productos aleatorios</h1>
-      <Row xs={1} md={6/3} className="product">
+      <Row xs={1} md={6 / 3} className="product">
         {productos.map((producto) => (
           <Col key={producto.id}>
             <Card className="mb-3">
