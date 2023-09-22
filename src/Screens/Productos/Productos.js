@@ -1,5 +1,6 @@
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import CardProducto from '../../Componentes/Card';
 import Button from 'react-bootstrap/Button';
@@ -11,29 +12,36 @@ function Productos() {
     const [titulo, setTitulo] = useState();
     const [Productos, setProductos] = useState([{}]);
 
-    useEffect(() => {
-        axios.get('https://dummyjson.com/products')
-            .then(res => {
-                console.log(res)
-                setProductos(res.data.products)
-            })
-            .catch(e => {
+     useEffect(() => {
+         axios.get('https://dummyjson.com/products')
+             .then(res => {
+                 console.log(res)
+                 setProductos(res.data.products)
+             })
+             .catch(e => {
+                 console.log(e)
             });
-    }, []);
+     }, []);
+
+ 
+
+      console.log(Productos)
 
     const handleChange = (event) => {
         setTitulo(event.target.value)
-      }
+    }
     const handleSubmit  = (e) => {
          e.preventDefault();
         if (!e.value==="") {
             alert("completa todos los campos pedazo de termita asesina de alfajores")
         } else {
-            traerFlitros("https://dummyjson.com/products/?q=" + titulo);
+            traerFlitros(`https://dummyjson.com/products/search?q=${titulo}`);
+            console.log("Valores del filtro:",Productos)
         }
     }
 
     const traerFlitros = (url) => {
+        console.log("URL", url);
         axios.get(url)
             .then(res => {
                 setProductos(res.data.products)
@@ -59,7 +67,7 @@ function Productos() {
             </Form>
 
             <Row style={{ padding: '2%' }}>
-                {Productos.map(producto => <Col sm={2}><CardProducto img={producto.thumbnail} titulo={producto.title} texto={producto.description}></CardProducto>
+                {Productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description}></CardProducto>
                 </Col>)}
             </Row>
 
