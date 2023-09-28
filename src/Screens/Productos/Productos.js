@@ -1,42 +1,45 @@
-import { Container, Row, Col, Card, Carousel} from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import CardProducto from '../../Componentes/Card';
 import Button from 'react-bootstrap/Button';
 /*import Col from 'react-bootstrap/Col';*/
 import Form from 'react-bootstrap/Form';
+import './producto.css';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 function Productos() {
     /*let btnFiltro = document.getElementById("btnFiltro");
     let btnDetalle = document.getElementById("btnDetalle");*/
     const [titulo, setTitulo] = useState();
     const [Productos, setProductos] = useState([{}]);
 
-     useEffect(() => {
-         axios.get('https://dummyjson.com/products')
-             .then(res => {
-                 console.log(res)
-                 setProductos(res.data.products)
-             })
-             .catch(e => {
-                 console.log(e)
+    useEffect(() => {
+        axios.get('https://dummyjson.com/products')
+            .then(res => {
+                console.log(res)
+                setProductos(res.data.products)
+            })
+            .catch(e => {
+                console.log(e)
             });
-     }, []);
+    }, []);
 
- 
 
-      console.log(Productos)
+
+    console.log(Productos)
 
     const handleChange = (event) => {
         setTitulo(event.target.value)
     }
-    const handleSubmit  = (e) => {
-         e.preventDefault();
-        if (!e.value==="") {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!e.value === "") {
             alert("completa todos los campos pedazo de termita asesina de alfajores")
         } else {
             traerFlitros(`https://dummyjson.com/products/search?q=${titulo}`);
-            console.log("Valores del filtro:",Productos)
+            console.log("Valores del filtro:", Productos)
         }
     }
 
@@ -50,38 +53,43 @@ function Productos() {
     }
 
     return (
-        <body>
-            <Form onSubmit={(e) => handleSubmit(e)} noValidate className='form'>
-                <Form.Group /*as={Col} md="4"*/ controlId="validationCustom01">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Ingrese el producto"
-                        value={titulo}
-                        name="titulo"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Button type="submit">FILTRAR</Button>
-            </Form>
+        <Container fluid>
+            <Navbar expand="lg" className="bg-body-tertiary">
+                <Container >
+                    <Navbar.Brand href="#home">TPPRODUCTOS</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/Productos">Productos</Nav.Link>
+                            <Nav.Link href="/contacto">Contacto</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <br></br>
+            <div className='fondo'>
+                <Form onSubmit={(e) => handleSubmit(e)} noValidate className='form'>
+                    <Form.Group /*as={Col} md="4"*/ controlId="validationCustom01">
+                        <Form.Label>Ingrese el producto a buscar</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Ingrese el producto"
+                            value={titulo}
+                            name="titulo"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    <Button type="submit">FILTRAR</Button>
+                </Form>
 
-            <Row style={{ padding: '2%' }}>
-                {Productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description}></CardProducto>
-                </Col>)}
-            </Row>
-
-            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-            <script src="scripts.js"></script>
-
-        </body>
-
+                <Row style={{ padding: '2%' }}>
+                    {Productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} Id={producto.id}></CardProducto>
+                    </Col>)}
+                </Row>
+            </div>
+        </Container>
     );
 }
 

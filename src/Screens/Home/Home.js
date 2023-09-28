@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Card, Carousel} from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel } from 'react-bootstrap';
 import './Home.css';
+import CardProducto from '../../Componentes/Card';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
 function Home() {
   const [productos, setProductos] = useState([]);
 
@@ -27,37 +31,41 @@ function Home() {
   };
 
   return (
-    <Container>
-      <Carousel>
-    {productos.map((producto, index) => (
-      <Carousel.Item key={index}>
-        <img
-          className="d-block w-100"
-          src={producto.images[0]}           
-        />
-        <Carousel.Caption>
-        </Carousel.Caption>
-      </Carousel.Item>
-    ))}
-  </Carousel>
-   
-      <h1>Productos aleatorios</h1>
-      <Row xs={1} md={6 / 3} className="product">
-        {productos.map((producto) => (
-          <Col key={producto.id}>
-            <Card className="mb-3">
-              <Card.Img src={producto.images[0]} alt={producto.title} />
-              <Card.Body>
-                <Card.Title>{producto.title}</Card.Title>
-                <Card.Text>{producto.description}</Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">Precio: ${producto.price}</small>
-              </Card.Footer>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+    <Container fluid>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container >
+          <Navbar.Brand href="#home">TPPRODUCTOS</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/Productos">Productos</Nav.Link>
+              <Nav.Link href="/contacto">Contacto</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Container >
+        <br></br>
+        <Carousel>
+          {productos.map((producto, index) => (
+            <Carousel.Item key={index}>
+              <img
+                className="d-block w-100"
+                src={producto.images[0]}
+              />
+              <Carousel.Caption>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+
+        <h1>Productos aleatorios</h1>
+        <Row xs={1} md={6 / 3} className="product">
+          {productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} Id={producto.id}></CardProducto>
+          </Col>)}
+        </Row>
+      </Container>
     </Container>
   );
 }
