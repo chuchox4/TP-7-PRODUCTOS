@@ -5,6 +5,7 @@ import './Home.css';
 import CardProducto from '../../Componentes/Card';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [productos, setProductos] = useState([]);
@@ -41,6 +42,7 @@ function Home() {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/Productos">Productos</Nav.Link>
               <Nav.Link href="/contacto">Contacto</Nav.Link>
+              <Nav.Link><Link to={"/carrito"}>Carrito</Link></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
