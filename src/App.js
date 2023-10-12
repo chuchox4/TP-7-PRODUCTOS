@@ -12,7 +12,11 @@ function App() {
   const [carrito,SetCarrito] = useState([])
 
   const añadirProducto = (prod) => {
-    SetCarrito([...carrito, prod]);
+    let yaExiste = carrito.findIndex(producto => producto.id === prod.id);
+    if(yaExiste === -1) SetCarrito([...carrito, {...prod, cantidad: 1}]);
+    else {
+      SetCarrito(carrito.map(producto => producto.id === prod.id ? {...producto, cantidad: producto.cantidad + 1} : producto));
+    }
   }
 
   useEffect(() => {

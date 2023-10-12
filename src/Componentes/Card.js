@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import context from 'react-bootstrap/esm/AccordionContext';
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import {carritoContext} from '../Contexts/carritoContext';
 const CardProducto = (props/*{img = "", titulo="", texto =""}*/) => {
   const productoCarrito = useContext (carritoContext);
-  return (
+    return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={props.img} />
       <Card.Body>
