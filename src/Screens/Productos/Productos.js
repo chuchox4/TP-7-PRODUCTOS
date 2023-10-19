@@ -10,9 +10,11 @@ import './producto.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+
 function Productos() {
     const [titulo, setTitulo] = useState();
     const [Productos, setProductos] = useState([{}]);
+
     useEffect(() => {
         axios.get('https://dummyjson.com/products')
             .then(res => {
@@ -23,8 +25,6 @@ function Productos() {
                 console.log(e)
             });
     }, []);
-
-
 
     console.log(Productos)
 

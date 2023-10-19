@@ -9,7 +9,19 @@ import { carritoContext } from './Contexts/carritoContext';
 import { useEffect, useState } from 'react';
 import Carrito from './Screens/Carrito/Carrito'
 function App() {
-  const [carrito,SetCarrito] = useState([])
+  const [carrito,SetCarrito] = useState([]);
+
+  useEffect(() =>{
+    if (carrito.length) {
+      localStorage.setItem('items', JSON.stringify(carrito));
+    }
+  }, [carrito])
+
+  useEffect(() => {
+    if (localStorage.getItem("items")) {
+        SetCarrito(JSON.parse(localStorage.getItem("items")))
+    }
+  }, []);
 
   const añadirProducto = (prod) => {
     let yaExiste = carrito.findIndex(producto => producto.id === prod.id);

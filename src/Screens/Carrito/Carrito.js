@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 function Carrito() {
     const productoCarrito = useContext(carritoContext);
     const [isLoading, setLoading] = useState(true)
+    
     return (
         <Container fluid>
             <Navbar expand="lg" className="bg-body-tertiary">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Carousel } from 'react-bootstrap';
 import './Home.css';
@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   const [productos, setProductos] = useState([]);
-
   useEffect(() => {
     axios
       .get('https://dummyjson.com/products')
@@ -21,6 +20,7 @@ function Home() {
         console.error('Error al obtener los productos:', error);
       });
   }, []);
+
 
   const getRandomProducts = (array, count) => {
     const shuffledArray = array.slice(); // Create a shallow copy
