@@ -6,11 +6,11 @@ import { Container, Row, Col, Card, Carousel } from 'react-bootstrap';
 import { carritoContext } from '../../Contexts/carritoContext'
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function Carrito() {
     const productoCarrito = useContext(carritoContext);
     const [isLoading, setLoading] = useState(true)
-    const [contador, setContador] = useState(0)
     return (
         <Container fluid>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -35,10 +35,11 @@ function Carrito() {
                         <h3>Precio: {producto.precio}</h3>
                         <img src={producto.img} className='foto' alt=''></img>
                         <h2>Descripcion: {producto.texto} </h2>
-                        <button onClick={() => productoCarrito.añadirProducto(productoCarrito.cantidad + 1)}>+</button>
+                        <button onClick={() => productoCarrito.actualizarCantidad({...producto, cantidad: producto.cantidad + 1})}>+</button>
                         <h3>{producto.cantidad}</h3>
-                        <button onClick={() => productoCarrito.añadirProducto(productoCarrito.cantidad - 1)}>-</button>
+                        <button onClick={() => productoCarrito.actualizarCantidad({...producto, cantidad: producto.cantidad - 1})}>-</button>
                         <br></br>
+                        <Button onClick={() => productoCarrito.eliminarProducto(producto)}>Eliminar</Button>
                     </>
 
                 ))}

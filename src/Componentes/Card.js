@@ -14,7 +14,7 @@ const CardProducto = (props/*{img = "", titulo="", texto =""}*/) => {
         <Card.Text>
           {props.precio}
         </Card.Text>
-       <Link to={"/verDetalles/"+props.Id}>Ver Detalle</Link>
+       <Link to={"/verDetalles/"+props.id}>Ver Detalle</Link>
        <Button onClick={() => productoCarrito.añadirProducto(props)}>Agregar Al carrito</Button>
       </Card.Body>
     </Card>

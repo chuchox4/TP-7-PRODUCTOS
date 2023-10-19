@@ -64,7 +64,7 @@ function Home() {
 
         <h1>Productos aleatorios</h1>
         <Row xs={1} md={6 / 3} className="product">
-          {productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} Id={producto.id}></CardProducto>
+          {productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} id={producto.id}></CardProducto>
           </Col>)}
         </Row>
       </Container>

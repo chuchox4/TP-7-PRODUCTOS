@@ -19,12 +19,21 @@ function App() {
     }
   }
 
+  const actualizarCantidad = (prod) => {
+      SetCarrito(carrito.map(producto => producto.id === prod.id ? {...producto, cantidad: prod.cantidad} : producto));
+  }
+  const eliminarProducto = (prod) => {
+    console.log("eliminar:", prod)
+    SetCarrito(
+      carrito.filter( product => product.id !== prod.id )
+    );}
+
   useEffect(() => {
     console.log("CARRITOCAMBIO", carrito);
   }, [carrito]);
 
   return (
-    <carritoContext.Provider value={{carrito, SetCarrito, añadirProducto}}>    
+    <carritoContext.Provider value={{carrito, SetCarrito, añadirProducto, actualizarCantidad, eliminarProducto}}>    
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>

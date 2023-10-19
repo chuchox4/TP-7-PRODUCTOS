@@ -10,12 +10,9 @@ import './producto.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import carritoContext from '../../Contexts/carritoContext'
 function Productos() {
-    /*let btnFiltro = document.getElementById("btnFiltro");
-    let btnDetalle = document.getElementById("btnDetalle");*/
     const [titulo, setTitulo] = useState();
-    const [Productos, setProductos] = useState([{}]);    
+    const [Productos, setProductos] = useState([{}]);
     useEffect(() => {
         axios.get('https://dummyjson.com/products')
             .then(res => {
@@ -87,7 +84,7 @@ function Productos() {
                 </Form>
 
                 <Row style={{ padding: '2%' }}>
-                    {Productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} Id={producto.id}></CardProducto>
+                    {Productos.map(producto => <Col sm={2}><CardProducto titulo={producto.title} img={producto.thumbnail} texto={producto.description} precio={producto.price} id={producto.id}></CardProducto>
                     </Col>)}
                 </Row>
             </div>
